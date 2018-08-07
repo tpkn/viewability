@@ -33,7 +33,7 @@ The callback function will be triggered when block has 50% viewability for 1 sec
 ### .check()
 **Type**: _Function_  
 **Returns**: `Object`  
-Returned object contains `{ vx, vy, square }` params, where `vx` and `vy` is a vertical and horizontal viewability (just incase only one axis needed), and `square` that is the visible square of the element based on both axis.
+Returned object contains `{ x, y, square }` params, where `x` and `y` is a vertical and horizontal viewability (just incase only one axis needed), and `square` that is the visible square of the element based on both axis.
 
 
 
