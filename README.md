@@ -1,40 +1,39 @@
 # Viewability   
-Calculate block viewability
-
+Calculate DOM element viewability
 
 
 
 
 ## API
 
-### Viewability([options])
+### Viewability(stage, element[, options])
 
-### options.stage   
+### stage   
 **Type**: _Object_  
-`document.documentElement` or `window` object
+`document.documentElement` or `window` object.
 
 
-### options.element  
+### element  
 **Type**: _Object_  
-Block object
+DOM element
 
 
 ### options.percentage
 **Type**: _Number_   
 **Default**: : `50`  
-Visibility of the block in percentage after which the callback will be triggered. `iab` option overrides this option.
+Visibility of the block in percentage after which the callback will be triggered.
 
 
 ### options.iab
 **Type**: _Boolean_  
 **Default**: `false`  
-The callback function will be triggered when block has 50% viewability for 1 second   
+The callback function will be triggered when block has 50% viewability for 1 second. `percentage` option overrides standard (50%) value.
 
 
 ### .check()
 **Type**: _Function_  
-**Returns**: _Object_  
-Returns an object `{ vx, vy, square }`, where `vx` and `vy` is a vertical and horizontal viewability (just incase only one axis needed), and `square` is the visible square of the element based on both axis.
+**Returns**: `Object`  
+Returned object contains `{ vx, vy, square }` params, where `vx` and `vy` is a vertical and horizontal viewability (just incase only one axis needed), and `square` that is the visible square of the element based on both axis.
 
 
 
@@ -42,14 +41,18 @@ Returns an object `{ vx, vy, square }`, where `vx` and `vy` is a vertical and ho
 
 ## Usage
 ```javascript
-var viewability = new Viewability({
-   stage: document.documentElement, 
-   element: document.getElementById('block'), 
-   percentage: 55,
+var va;
+var stage = document.documentElement
+var element = document.getElementById('block');
+
+var viewability = new Viewability(stage, element, {
+   iab: true, 
+   percentage: 22,
    on_visible: onVisible
 });
 
 window.onscroll = window.onresize = checkViewability;
+checkViewability();
 
 
 function onVisible(){
@@ -57,8 +60,9 @@ function onVisible(){
 }
 
 function checkViewability(){
-   var va = viewability.check();
+   va = viewability.check();
    console.log(va.x, va.y, va.square);
 }
 ```
+
 
